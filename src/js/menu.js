@@ -25,16 +25,16 @@ if (localStorage.getItem('theme')) {
 }
 
 refs.switcher.cheked = localStorage.getItem('theme') === theme.DARK;
-refs.switcher.checked = refs.body.classList.contains(theme.DARK) ? true : false;
 
 function switchBox() {
   if (this.checked) {
-    refs.body.classList.add(theme.DARK);
-    refs.body.classList.remove(theme.LIGHT);
-    localStorage.setItem('theme', theme.DARK);
+    changeTheme(theme.LIGHT, theme.DARK);
   } else {
-    refs.body.classList.add(theme.LIGHT);
-    refs.body.classList.remove(theme.DARK);
-    localStorage.setItem('theme', theme.LIGHT);
+    changeTheme(theme.DARK, theme.LIGHT);
   }
+}
+function changeTheme(oldTheme, newTheme) {
+  refs.body.classList.remove(oldTheme);
+  refs.body.classList.add(newTheme);
+  localStorage.setItem('theme', newTheme);
 }
